@@ -83,6 +83,10 @@ public class JsonFormat extends NutMap {
     }
 
     public static class Function {
+    	/**
+    	 * 是否忽略 JsonShape 注解
+    	 */
+    	public static String ignoreJsonShape = "ignoreJsonShape";
         /**
          * 缩进时用的字符串
          */
@@ -155,10 +159,12 @@ public class JsonFormat extends NutMap {
      * @return true: 该字段在忽略字段中，false: 该字段不在忽略字段中
      */
     public boolean ignore(String name) {
-        if (null != getActived())
+        if (null != getActived()) {
             return !getActived().matcher(name).find();
-        if (null != getLocked())
+        }
+        if (null != getLocked()) {
             return getLocked().matcher(name).find();
+        }
         return false;
     }
 
@@ -214,6 +220,18 @@ public class JsonFormat extends NutMap {
     public String getIndentBy() {
         return getString(Function.indentBy, "   ");
     }
+    /**
+     * 设置忽略 JsonShape 注解
+     * @return
+     */
+    public JsonFormat ignoreJsonShape() {
+		put(Function.ignoreJsonShape,true);
+		return this;
+	}
+    
+    public boolean isIgnoreJsonShape() {
+		return getBoolean(Function.ignoreJsonShape);
+	}
 
     /**
      * 设置Json输出格式的缩进时用的字符串
@@ -321,8 +339,9 @@ public class JsonFormat extends NutMap {
      */
     public char getSeparator() {
         Character separator = getAs(Function.separator, Character.class);
-        if (separator != null)
+        if (separator != null) {
             return separator;
+        }
         return DEFAULT_SEPARATOR;
     }
 

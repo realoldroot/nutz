@@ -87,6 +87,7 @@ public interface Sql extends DaoStatement {
     /**
      * 重写父接口返回值
      */
+    @Override
     Sql setEntity(Entity<?> entity);
 
     /**
@@ -138,4 +139,6 @@ public interface Sql extends DaoStatement {
      * @return 当前SQL对象
      */
     Sql changePlaceholder(char param, char var);
+    
+    Sql appendSourceSql(String ext);
 }

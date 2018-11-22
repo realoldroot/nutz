@@ -30,7 +30,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.nutz.castor.Castors;
 import org.nutz.dao.entity.Record;
-import org.nutz.dao.sql.Pojo;
 import org.nutz.dao.test.meta.Base;
 import org.nutz.dao.test.meta.Pet;
 import org.nutz.http.Request.METHOD;
@@ -54,7 +53,6 @@ import org.nutz.json.meta.PojoWithLocalDateTime;
 import org.nutz.lang.Files;
 import org.nutz.lang.Lang;
 import org.nutz.lang.Streams;
-import org.nutz.lang.Strings;
 import org.nutz.lang.Times;
 import org.nutz.lang.stream.StringInputStream;
 import org.nutz.lang.stream.StringOutputStream;
@@ -144,6 +142,7 @@ public class JsonTest {
         assertEquals("\"K\"", Json.toJson(K.K));
         String expected = "{\n" + "   \"name\": \"t\",\n" + "   \"index\": 1\n" + "}";
         assertEquals(expected, Json.toJson(TT.T));
+        assertEquals("\"T\"",Json.toJson(TT.T,JsonFormat.full().ignoreJsonShape()));
     }
 
     @Test

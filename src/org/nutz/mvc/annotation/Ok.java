@@ -6,6 +6,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ *  用法
+ *
+ *  @ok("json")
+ *  返回有值字段json
+ *
+ *  @ok("json:full")
+ *  返回所有字段
+ *
+ *  @ok("json:{locked:'password|createAt|salt',ignoreNull:true}")
+ *  忽略password和createAt属性,忽略空属
+ *
+ *  参考文档
+ *  https://nutzam.com/core/json/mvc.html
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Documented
